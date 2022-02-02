@@ -15,6 +15,12 @@
     <input type="text" id ="SendXuiMessage" value="">
     <script>
       alert('loaded')
+      function SendXuiMessage(message) {
+        document.getElementById("SendXuiMessage").value = message;
+      }
+      document.getElementById("XuiMessage").addEventListener('input', function (e) {
+          alert(e.value)
+      });
     </script>
 
   </body>
