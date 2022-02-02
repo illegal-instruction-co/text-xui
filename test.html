@@ -18,9 +18,13 @@
       function SendXuiMessage(message) {
         document.getElementById("SendXuiMessage").value = message;
       }
-      document.getElementById("XuiMessage").addEventListener('input', function () {
-          alert(document.getElementById("XuiMessage").value)
-      });
+      setInterval(function() {
+        var message = document.getElementById("XuiMessage").value
+        if(message !== "") {
+          alert(message)
+          document.getElementById("XuiMessage").value = ""
+        }
+      }, 10)
     </script>
 
   </body>
