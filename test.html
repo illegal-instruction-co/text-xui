@@ -18,8 +18,8 @@
       function SendXuiMessage(message) {
         document.getElementById("SendXuiMessage").value = message;
       }
-      document.getElementById("XuiMessage").addEventListener('input', function (e) {
-          alert(e.value)
+      document.getElementById("XuiMessage").addEventListener('input', function () {
+          alert(document.getElementById("XuiMessage").value)
       });
     </script>
 
