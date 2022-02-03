@@ -11,20 +11,10 @@
   </head>
   <body>
     <button onclick = "SendXuiMessage(122112)">Test send lua message</button>
-    <input type="text" id ="XuiMessage" value="">
-    <input type="text" id ="SendXuiMessage" value="">
     <script>
-      alert('loaded')
-      function SendXuiMessage(message) {
-        document.getElementById("SendXuiMessage").value = message;
+      OnXuiMessage = function(message) {
+        console.log(message);
       }
-      setInterval(function() {
-        var message = document.getElementById("XuiMessage").value
-        if(message !== "") {
-          console.log(message)
-          document.getElementById("XuiMessage").value = ""
-        }
-      }, 10)
     </script>
 
   </body>
