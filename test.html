@@ -10,8 +10,12 @@
     </style>
   </head>
   <body>
-    <button onclick = "SendXuiMessage(0xDEADBEEF)">Test send lua message</button>
+    <input id="testMessage" value="">
+    <button onclick = "SendTestMessage">Test send lua message</button>
     <script>
+      function SendTestMessage() {
+        SendXuiMessage(document.getElementById("testMessage").value)
+      }
       OnXuiMessage = function(message) {
         console.log(message);
       }
