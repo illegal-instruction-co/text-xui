@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="testMessage" value="THETEST">
+    <button onclick = "SendTestMessage()">Test send lua message</button>
+    <script>
+      function SendTestMessage() {
+        SendXuiMessage(document.getElementById("testMessage").value)
+      }
+      OnXuiMessage = function(message) {
+        console.log(message);
+      }
+    </script>
+
+  </body>
+</html>
