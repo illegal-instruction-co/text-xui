@@ -38,7 +38,12 @@
       document.getElementById("circle").style.height = `${size}px`
     }
     OnXuiMessage = function(message) {
-      alert(message);
+      message = JSON.parse(message)
+      if(message.command === "size") {
+        ChangeCircleSize(message.size)
+      } else if(message.command === "color") {
+        ChangeCircleColor(message.color)
+      }
     }
   </script>
 </body>
