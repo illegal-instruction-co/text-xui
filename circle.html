@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HTML</title>
+<style>
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .center-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+    }
+    .circle {
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+      border: 1px solid blue;
+    }
+</style>
+</head>
+<body>
+    <div class="center-screen">
+     <div class="circle" id="circle" />
+    </div>
+
+  <script>
+    function ChangeCircleColor(color) {
+      document.getElementById("circle").style.border = `1px solid ${color}`
+    }
+    function ChangeCircleSize(size) {
+      document.getElementById("circle").style.width = `${size}px`
+      document.getElementById("circle").style.height = `${size}px`
+    }
+    OnXuiMessage = function(message) {
+      alert(message);
+    }
+  </script>
+</body>
+</html>
