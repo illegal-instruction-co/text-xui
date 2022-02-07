@@ -136,7 +136,7 @@
       if(distance >= maxDistance) distance = 0
       if(distance < 0.1) DeleteBox(id)
 
-      var percent = (maxDistance / minimumDistance) * 0.00002
+      var percent = (maxDistance / minimumDistance) * 0.00001
       distance = percent / distance
 
       document.getElementById(`${id} esp-box`).style.transform = `scale(${distance})`
