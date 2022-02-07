@@ -44,34 +44,66 @@
     </style>
   </head>
   <body>
-    <div class="esp-box" id="esp-box">
-      <div class="health-bar">
-        <div class="plus" id="plus">
-        </div>
-        <div class="minus" id="minus">
-        </div>
-      </div>
-    </div>
     <script>
 
-    function ChangeHealth(health, maxHealth) {
+    var boxes = []
+
+    function AddBox(id) {
+      var newBox = document.createElement('div')
+      newBox.setAttribute("id", id)
+      newBox.innerHTML = '';
+      document.body.appendChild(newBox);
+      var espBox = document.createElement('div')
+      espBox.setAttribute("id", `${id} esp-box`)
+      espBox.classList.add("esp-box")
+      espBox.innerHTML = '';
+      document.getElementById(id).appendChild(espBox);
+      var healthBar = document.createElement('div')
+      healthBar.setAttribute("id", `${id} health-bar`)
+      healthBar.classList.add("health-bar")
+      healthBar.innerHTML = '';
+      document.getElementById(`${id} esp-box`).appendChild(healthBar);
+      var plus = document.createElement('div')
+      plus.setAttribute("id", `${id} plus`)
+      plus.classList.add("plus")
+      plus.innerHTML = '';
+      document.getElementById(`${id} health-bar`).appendChild(plus);
+      var minus = document.createElement('div')
+      minus.setAttribute("id", `${id} minus`)
+      minus.classList.add("minus")
+      minus.innerHTML = '';
+      document.getElementById(`${id} health-bar`).appendChild(minus);
+      boxes.push({id: id})
+    }
+    function DeleteBox(id) {
+      document.getElementById(id).remove()
+    }
+    function ChangeHealth(id, health, maxHealth) {
       var plus = health / (maxHealth / 100)
       var minus = (maxHealth - health) / (maxHealth / 100)
-      document.getElementById("plus").style.height = `${plus}%`
-      document.getElementById("minus").style.height = `${minus}%`
+      document.getElementById(`${id} plus`).style.height = `${plus}%`
+      document.getElementById(`${id} minus`).style.height = `${minus}%`
     }
-    function ChangeBoxPos(x,y) {
-      document.getElementById("esp-box").style.left = `${x}px`
-      document.getElementById("esp-box").style.top = `${y}px`
+    function ChangeBoxPos(id,x,y) {
+      document.getElementById(`${id} esp-box`).style.left = `${x}px`
+      document.getElementById(`${id} esp-box`).style.top = `${y}px`
     }
-    function ChangeBoxSize(size) {
+    function ChangeBoxSize(id, size) {
       document.getElementById("esp-box").style.transform = `scale(${size})`
     }
     OnXuiMessage = function(message) {
       message = JSON.parse(message)
       if(message.command === "change") {
-        ChangeBoxPos(message.x, message.y)
-        ChangeHealth(message.health, message.maxHealth)
+        let box = boxes.find(o => o.id === message.id)
+        if(box === undefined) {
+          AddBox(message.id)
+        } else {
+          if(message.x < 0 || message.y < 0) {
+            DeleteBox(message.id)
+          }
+        }
+        ChangeBoxPos(message.id, message.x, message.y)
+        ChangeHealth(message.id, message.health, message.maxHealth)
       }
     }
 
