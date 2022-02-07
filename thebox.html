@@ -44,15 +44,18 @@
     </style>
   </head>
   <body>
+    <div id="box-container">
+    </div>
     <script>
 
     var boxes = []
 
     function AddBox(id) {
+      var theBox = document.getElementById("box-container");
       var newBox = document.createElement('div')
       newBox.setAttribute("id", id)
       newBox.innerHTML = '';
-      document.body.appendChild(newBox);
+      theBox.appendChild(newBox);
       var espBox = document.createElement('div')
       espBox.setAttribute("id", `${id} esp-box`)
       espBox.classList.add("esp-box")
@@ -92,7 +95,6 @@
       document.getElementById("esp-box").style.transform = `scale(${size})`
     }
     OnXuiMessage = function(message) {
-      alert(message)
       message = JSON.parse(message)
       if(message.command === "change") {
         let box = boxes.find(o => o.id === message.id)
