@@ -2,7 +2,7 @@
 local xuiWidth, xuiHeight = GetActiveScreenResolution()
 local xuiHandle = FiveX.CreateXui("https://raw.githubusercontent.com/illegal-instruction-co/text-xui/main/thebox.html", xuiWidth, xuiHeight)
 
-function ChangeXuiBox(x, y, health)
+function ChangeXuiBox(x, y, health, maxHealth)
     FiveX.SendXuiMessage(xuiHandle, json.encode({
         command = "change",
         x = x,
