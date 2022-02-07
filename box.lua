@@ -2,11 +2,12 @@
 local xuiWidth, xuiHeight = GetActiveScreenResolution()
 local xuiHandle = FiveX.CreateXui("https://raw.githubusercontent.com/illegal-instruction-co/text-xui/main/thebox.html", xuiWidth, xuiHeight)
 
-function ChangeXuiBoxPos(x, y)
+function ChangeXuiBox(x, y, health)
     FiveX.SendXuiMessage(xuiHandle, json.encode({
-        command = "pos",
+        command = "change",
         x = x,
-        y = y
+        y = y,
+        health = health
     }))
 end
 
@@ -25,15 +26,16 @@ Citizen.CreateThread(function()
         local player = GetPlayerPed(-1)
         local playerCoords = GetEntityCoords(player)
         local distance = GetDistanceBetweenCoords(playerCoords, playerCoords, true)
+        local health = GetEntityHealth(player)
         local retval, screenX, screenY = GetScreenCoordFromWorldCoord(playerCoords.x, playerCoords.y,  playerCoords.z)
         
-        ChangeXuiBoxPos(aScreenX * screenX * 100, aScreenY * screenY * 100)
+        ChangeXuiBox((aScreenX * screenX * 100) - (aScreenX * 3), aScreenY * screenY * 100 - (aScreenY * 9), health)
         
         --print( aScreenX * screenX * 100, aScreenY * screenY * 100)
         --print(distance)
         
         end)
         
-        Citizen.Wait(0)
+        Citizen.Wait(250)
     end
 end)
