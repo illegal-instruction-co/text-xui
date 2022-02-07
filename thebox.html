@@ -136,19 +136,20 @@
     OnXuiMessage = function(message) {
       message = JSON.parse(message)
       if(message.command === "change") {
-        let box = boxes.find(o => o.id === message.id)
-        if(box === undefined) {
-          AddBox(message.id)
-        } else {
-          if(message.x < 0 || message.y < 0) {
-            DeleteBox(message.id)
+        for (var i = 0; i < message.peds.length; i++) {
+          let box = boxes.find(o => o.id === message.peds[i].id)
+          if(box === undefined) {
+            AddBox(message.peds[i].id)
+          } else {
+            if(message.peds[i].x < 0 || message.peds[i].y < 0) {
+              DeleteBox(message.peds[i].id)
+            }
           }
+          ChangeBoxPos(message.peds[i].id, message.peds[i].x, message.peds[i].y)
+          ChangeHealth(message.peds[i].id, message.peds[i].health, message.peds[i].maxHealth)
         }
-        ChangeBoxPos(message.id, message.x, message.y)
-        ChangeHealth(message.id, message.health, message.maxHealth)
       }
     }
-
     </script>
   </body>
 </html>
