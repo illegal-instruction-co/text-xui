@@ -80,6 +80,10 @@
     }
     function DeleteBox(id) {
       document.getElementById(id).remove()
+      boxes = boxes.filter(function(item) {
+          return item !== id
+      })
+
     }
     function ChangeHealth(id, health, maxHealth) {
       var plus = health / (maxHealth / 100)
@@ -99,7 +103,6 @@
       if(message.command === "change") {
         let box = boxes.find(o => o.id === message.id)
         if(box === undefined) {
-          alert("not-found-player-box")
           AddBox(message.id)
         } else {
           if(message.x < 0 || message.y < 0) {
