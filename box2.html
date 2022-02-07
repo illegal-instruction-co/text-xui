@@ -130,16 +130,16 @@
       document.getElementById(`${id} esp-box`).style.left = `${x}px`
       document.getElementById(`${id} esp-box`).style.top = `${y}px`
     }
-    function ChangeBoxSize(id, size) {
+    function ChangeBoxSize(id, distance) {
       var minimumDistance = 0.01
       var maxDistance = 1000
-      if(size >= maxDistance) size = 0
-      if(size < 0.1) DeleteBox(id)
+      if(distance >= maxDistance) distance = 0
+      if(distance < 0.1) DeleteBox(id)
 
-      var percent = maxDistance / minimumDistance
-      size = percent / size
+      var percent = (maxDistance / minimumDistance) * 0.00002
+      distance = percent / distance
 
-      document.getElementById(`${id} esp-box`).style.transform = `scale(${size})`
+      document.getElementById(`${id} esp-box`).style.transform = `scale(${distance})`
     }
     OnXuiMessage = function(message) {
       message = JSON.parse(message)
