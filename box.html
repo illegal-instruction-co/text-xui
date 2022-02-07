@@ -54,11 +54,9 @@
     </div>
     <script>
 
-    function ChangeBoxY(y) {
-      document.getElementById("esp-box").style.top = `${y}px`
-    }
-    function ChangeBoxX(x) {
+    function ChangeBoxPos(x,y) {
       document.getElementById("esp-box").style.left = `${x}px`
+      document.getElementById("esp-box").style.top = `${y}px`
     }
     function ChangeBoxSize(size) {
       document.getElementById("esp-box").style.transform = `scale(${size})`
@@ -67,11 +65,9 @@
       message = JSON.parse(message)
       if(message.command === "size") {
         ChangeBoxSize(message.size)
-      } else if(message.command === "x") {
-        ChangeBoxX(message.x)
-      } else if(message.command === "y") {
-        ChangeBoxY(message.y)
-      }
+      } else if(message.command === "pos") {
+        ChangeBoxX(message.x, message.y)
+      } 
     }
 
     </script>
