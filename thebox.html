@@ -134,6 +134,7 @@
       document.getElementById("esp-box").style.transform = `scale(${size})`
     }
     OnXuiMessage = function(message) {
+      alert(message)
       message = JSON.parse(message)
       if(message.command === "change") {
         for (var i = 0; i < message.peds.length; i++) {
