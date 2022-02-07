@@ -134,11 +134,13 @@
       var minimumDistance = 0.01
       var maxDistance = 1000
       if(size >= maxDistance) size = 0
+      if(size < 0.1) DeleteBox(id)
 
       var percent = maxDistance / minimumDistance
-
-      if(size < 0.1) DeleteBox(id)
-      document.getElementById(`${id} esp-box`).style.transform = `scale(${size / percent})`
+      size = size / percent
+      alert(size)
+      
+      document.getElementById(`${id} esp-box`).style.transform = `scale(${size})`
     }
     OnXuiMessage = function(message) {
       message = JSON.parse(message)
