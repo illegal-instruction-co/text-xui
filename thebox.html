@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        background: transparent;
+        overflow: hidden;
+      }
+      .esp-box {
+        position: absolute;
+        border: 2px dotted rgb(255, 165, 0, .5);
+        border-left: none;
+        height: 300px;
+        width: 150px;
+        top: 731px;
+        left:802px;
+        transform: scale(2);
+      }
+      .esp-box .health-bar {
+        height: 100%;
+        background: rgb(60, 60, 60, 0.5);
+        width: 5px;
+      }
+      .esp-box .health-bar .plus{
+        height: 60%;
+        background: rgb(60, 179, 113, 0.5);
+        width: 5px;
+      }
+      .esp-box .health-bar .minus{
+        height: 40%;
+        background: rgb(255, 0, 0, 0.5);
+        width: 5px;
+      }
+      .line {
+        border-top: 1px dotted rgb(255, 165, 0, .5);
+        position: absolute;
+        top: 9%;
+        left: 23%;
+        width: 50vh;
+        transform: skewY(-40deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="esp-box" id="esp-box">
+      <div class="health-bar">
+        <div class="plus">
+        </div>
+        <div class="minus">
+        </div>
+      </div>
+    </div>
+    <script>
+
+    function ChangeBoxPos(x,y) {
+      document.getElementById("esp-box").style.left = `${x}px`
+      document.getElementById("esp-box").style.top = `${y}px`
+    }
+    function ChangeBoxSize(size) {
+      document.getElementById("esp-box").style.transform = `scale(${size})`
+    }
+    OnXuiMessage = function(message) {
+      message = JSON.parse(message)
+      if(message.command === "size") {
+        ChangeBoxSize(message.size)
+      } else if(message.command === "pos") {
+        ChangeBoxPos(message.x, message.y)
+      }
+    }
+
+    </script>
+  </body>
+</html>
