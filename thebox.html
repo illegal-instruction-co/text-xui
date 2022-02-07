@@ -14,9 +14,9 @@
         border-left: none;
         height: 300px;
         width: 150px;
-        top: 731px;
-        left:802px;
-        transform: scale(2);
+        top: 50vh;
+        left: 50vw;
+        transform: scale(2.5);
       }
       .esp-box .health-bar {
         height: 100%;
@@ -46,14 +46,21 @@
   <body>
     <div class="esp-box" id="esp-box">
       <div class="health-bar">
-        <div class="plus">
+        <div class="plus" id="plus">
         </div>
-        <div class="minus">
+        <div class="minus" id="minus">
         </div>
       </div>
     </div>
     <script>
 
+    function ChangeHealth(health) {
+      var maxHealth = 200
+      var plus = health / (maxHealth / 100)
+      var minus = (maxHealth - health) / (maxHealth / 100)
+      document.getElementById("plus").style.height = `${plus}%`
+      document.getElementById("minus").style.height = `${minus}%`
+    }
     function ChangeBoxPos(x,y) {
       document.getElementById("esp-box").style.left = `${x}px`
       document.getElementById("esp-box").style.top = `${y}px`
@@ -63,11 +70,10 @@
     }
     OnXuiMessage = function(message) {
       message = JSON.parse(message)
-      if(message.command === "size") {
-        ChangeBoxSize(message.size)
-      } else if(message.command === "pos") {
+      if(message.command === "change") {
         ChangeBoxPos(message.x, message.y)
-      }
+        ChangeHealth(message.health)
+      } 
     }
 
     </script>
