@@ -137,9 +137,8 @@
       if(size < 0.1) DeleteBox(id)
 
       var percent = maxDistance / minimumDistance
-      size = size / percent
-      alert(size)
-      
+      size = percent / size
+
       document.getElementById(`${id} esp-box`).style.transform = `scale(${size})`
     }
     OnXuiMessage = function(message) {
