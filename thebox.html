@@ -102,10 +102,7 @@
     }
     function DeleteBox(id) {
       document.getElementById(id).remove()
-      boxes = boxes.filter(function(item) {
-          return item !== id
-      })
-
+      for (var i = 0; i < boxes.length; i++) if(boxes[i].id === id) boxes.splice(i, 1)
     }
     function ChangeHealth(id, health, maxHealth) {
       var plus = health / (maxHealth / 100)
