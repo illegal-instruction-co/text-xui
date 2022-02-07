@@ -7,7 +7,8 @@ function ChangeXuiBox(x, y, health)
         command = "change",
         x = x,
         y = y,
-        health = health
+        health = health,
+        maxHealth = maxHealth
     }))
 end
 
@@ -27,9 +28,10 @@ Citizen.CreateThread(function()
         local playerCoords = GetEntityCoords(player)
         local distance = GetDistanceBetweenCoords(playerCoords, playerCoords, true)
         local health = GetEntityHealth(player)
+        local maxHealth = GetEntityMaxHealth(player)
         local retval, screenX, screenY = GetScreenCoordFromWorldCoord(playerCoords.x, playerCoords.y,  playerCoords.z)
         
-        ChangeXuiBox((aScreenX * screenX * 100) - (aScreenX * 3), aScreenY * screenY * 100 - (aScreenY * 9), health)
+        ChangeXuiBox((aScreenX * screenX * 100) - (aScreenX * 3), aScreenY * screenY * 100 - (aScreenY * 9), health, maxHealth)
         
         --print( aScreenX * screenX * 100, aScreenY * screenY * 100)
         --print(distance)
