@@ -54,8 +54,7 @@
     </div>
     <script>
 
-    function ChangeHealth(health) {
-      var maxHealth = 200
+    function ChangeHealth(health, maxHealth) {
       var plus = health / (maxHealth / 100)
       var minus = (maxHealth - health) / (maxHealth / 100)
       document.getElementById("plus").style.height = `${plus}%`
@@ -72,7 +71,7 @@
       message = JSON.parse(message)
       if(message.command === "change") {
         ChangeBoxPos(message.x, message.y)
-        ChangeHealth(message.health)
+        ChangeHealth(message.health, message.maxHealth)
       }
     }
 
