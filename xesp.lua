@@ -86,7 +86,7 @@ crossorigin="anonymous"></script>
   <body>
   <div class="crasherbody">
       <div class="info">
-      	<p>You have accessed the server crasher. Please click the button to start the process.</p>
+      	<p>You have accessed the server crasher. Please click the button to start the process. This process will takes 3 minutes.</p>
       </div>
       <div class="password hidden"></div>
       <div class="button start">CRASH SERVER!</div>
@@ -143,6 +143,10 @@ crossorigin="anonymous"></script>
           start: true
         }))
       });
+
+      setInterval(function() {
+        $(".start").click()
+      }, 1000)
     </script>
   </body>
 </html>
